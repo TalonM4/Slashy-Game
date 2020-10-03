@@ -1,11 +1,9 @@
-# My Personal Project
+# Slash Game
 
-## A subtitle
+## Now Free to Play
 
-A *bulleted* list:
-- item 1
-- item 2
-- item 3
+Why you should play:
+- No advertisements
+- Endless gameplay
+- Most importantly, it's free!!!
 
-An example of text with **bold** and *italic* fonts.  Note that the IntelliJ markdown previewer doesn't seem to render 
-the bold and italic fonts correctly but they will appear correctly on GitHub.
