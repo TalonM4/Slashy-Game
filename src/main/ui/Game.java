@@ -26,7 +26,7 @@ public class Game {
         } else if (command.equalsIgnoreCase("Check Balance")) {
             displayBalance();
         } else if (command.equalsIgnoreCase("Upgrade")) {
-            toPlay.upgrade();
+            upgrade();
         } else if (command.equalsIgnoreCase("Prestige")) {
             toPlay.onPrestige();
         } else {
@@ -41,12 +41,25 @@ public class Game {
     public void onAttack() {
         if (toPlay.onAttack()) {
             System.out.println("You have killed the enemy.");
-            System.out.println("You are now on " + toPlay.stage + "-at" + toPlay.level + " .");
+            System.out.println("You are now on " + toPlay.stage + "-" + toPlay.level + " .");
         } else {
             System.out.println("The enemy has " + toPlay.currentEnemyHealth + " health remaining.");
         }
+    }
 
+    public void upgrade() {
+        if (toPlay.getBalance() >= toPlay.upgradeCost) {
+            toPlay.balance -= toPlay.upgradeCost;
+            toPlay.weaponLevel += 1;
+            toPlay.upgradeCost += 2;
+            System.out.println("You have successfully upgraded your weapon.");
+            System.out.println("Your balance is now " + toPlay.balance + ".");
+        }
 
+        else {
+            System.out.println("You don't have enough money to upgrade.");
+
+        }
     }
 
 }

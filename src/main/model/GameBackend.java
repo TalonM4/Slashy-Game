@@ -2,21 +2,24 @@ package model;
 
 public class GameBackend {
 
-    private int balance;
-    private int weaponLevel;
-    public String name;
+    public  int upgradeCost;
+    public int balance;
+    public int weaponLevel;
     private int prestigeLevel;
     public int stage;
     public int level;
     public double currentEnemyHealth;
+    public double maxEnemyHealth;
 
     public GameBackend() {
         this.prestigeLevel = 0;
-        this.weaponLevel = 0;
+        this.weaponLevel = 1;
         this.balance = 0;
         this.stage = 1;
         this.level = 1;
         this.currentEnemyHealth = 3;
+        this.upgradeCost = 1;
+        this.maxEnemyHealth = 3;
     }
 
     public void onPrestige() {
@@ -40,10 +43,6 @@ public class GameBackend {
         return this.balance;
     }
 
-    public void upgrade() {
-        System.out.println("upgrade");
-    }
-
     public void increaseStageByOne() {
         this.stage += 1;
     }
@@ -54,15 +53,24 @@ public class GameBackend {
             return true;
         } else {
             currentEnemyHealth -= attackDamageCalculator();
+            currentEnemyHealth = Math.round(currentEnemyHealth);
             return false;
         }
     }
 
     public void onKill() {
+        maxEnemyHealth *= 1.2 * stage;
+        currentEnemyHealth = maxEnemyHealth;
         if (level + 1 == 10) {
             increaseStageByOne();
+            setLevelToZero();
+
         } else {
             level += 1;
         }
+    }
+
+    public void setLevelToZero() {
+        level = 0;
     }
 }
