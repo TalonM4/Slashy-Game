@@ -44,7 +44,7 @@ public class Game {
         } else if (command.equalsIgnoreCase("Upgrade")) {
             upgrade();
         } else if (command.equalsIgnoreCase("Prestige")) {
-            toPlay.onPrestige();
+            prestige();
         } else if (command.equalsIgnoreCase("Create Boss")) {
             createBossMode = true;
         } else if (command.equalsIgnoreCase("Summon Boss")) {
@@ -83,11 +83,16 @@ public class Game {
     }
 
     public void prestige() {
-        if (toPlay.getBalance() >= 100) {
+        if (toPlay.getBalance() >=0 ) {
             toPlay.onPrestige();
+            System.out.println("You have sucessfully prestiged.");
+        } else {
+            System.out.println("You do not have enough money.");
         }
 
     }
+
+
 
 }
 
