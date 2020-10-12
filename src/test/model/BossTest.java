@@ -30,6 +30,9 @@ class BossTest {
         Boss boss1 = new Boss("Boss1", 1);
         bossList.addBoss(boss1);
         assertEquals(boss1, bossList.stringToBoss("Boss1"));
+        Boss invalidTest = new Boss("Placeholder", 1);
     }
+
+
 
 }

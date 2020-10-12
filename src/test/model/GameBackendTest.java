@@ -67,6 +67,8 @@ public class GameBackendTest {
         assertTrue(toTest.onAttack());
         assertTrue(toTest.onAttack());
         assertEquals(4,Math.round(toTest.currentEnemyHealth));
+        toTest.currentEnemyHealth = 100;
+        assertFalse(toTest.onAttack());
     }
 
     @Test
