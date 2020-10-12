@@ -4,11 +4,10 @@ import java.util.List;
 
 public class GameBackend {
 
-    public double storedMaxHealth;
     public  int upgradeCost;
     public int balance;
     public int weaponLevel;
-    private double prestigeLevel;
+    public double prestigeLevel;
     public int stage;
     public int level;
     public double currentEnemyHealth;
@@ -24,13 +23,20 @@ public class GameBackend {
         this.currentEnemyHealth = 3;
         this.upgradeCost = 1;
         this.maxEnemyHealth = 3;
-        this.storedMaxHealth = 0;
         this.listOfBosses = new AllBosses();
     }
 
     public void onPrestige() {
         this.prestigeLevel += 1;
-        this.balance -= 1000;
+        this.balance -= 100;
+        stage = 1;
+        weaponLevel = 1;
+        balance = 1;
+        level = 1;
+        currentEnemyHealth = 3;
+        upgradeCost = 1;
+        maxEnemyHealth = 3;
+
     }
 
     private boolean isNotZero() {
@@ -54,7 +60,7 @@ public class GameBackend {
     }
 
     public boolean onAttack() {
-        if (currentEnemyHealth - attackDamageCalculator() <= 0) {
+        if (Math.round(currentEnemyHealth - attackDamageCalculator()) <= 0) {
             onKill();
             return true;
         } else {
@@ -67,6 +73,7 @@ public class GameBackend {
     public void onKill() {
         maxEnemyHealth *= 1.15 * stage;
         currentEnemyHealth = maxEnemyHealth;
+        balance += stage;
         if (level + 1 == 10) {
             increaseStageByOne();
             setLevelToZero();
@@ -88,9 +95,6 @@ public class GameBackend {
         currentEnemyHealth = currentBoss.health;
     }
 
-
-    public void onBossKill() {
-    }
 
 
 }

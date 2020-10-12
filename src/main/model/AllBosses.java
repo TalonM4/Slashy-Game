@@ -21,7 +21,7 @@ public class AllBosses {
     //REQUIRES:The name must have an associated boss
     //EFFECTS: Takes a boss name and finds it in the list
     public Boss stringToBoss(String name) {
-        Boss toReturn = new Boss("Placeholder",0);
+        Boss toReturn = new Boss("Placeholder",1);
         for (Boss boss: allBosses) {
             if (boss.name.equals(name)) {
                 toReturn = boss;

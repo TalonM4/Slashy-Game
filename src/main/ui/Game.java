@@ -9,6 +9,7 @@ public class Game {
     GameBackend toPlay = new GameBackend();
     boolean createBossMode = false;
     AllBosses allBosses = new AllBosses();
+    boolean bossFight = false;
 
     public Game() {
         onGameStart();
@@ -81,7 +82,12 @@ public class Game {
         }
     }
 
+    public void prestige() {
+        if (toPlay.getBalance() >= 100) {
+            toPlay.onPrestige();
+        }
 
+    }
 
 }
 
