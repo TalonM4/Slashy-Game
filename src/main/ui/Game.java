@@ -18,7 +18,8 @@ public class Game {
         while (true) {
             if (!createBossMode) {
                 Scanner nextLine = new Scanner(System.in);
-                System.out.println("You can attack, check balance, upgrade, create boss, summon boss" +
+                System.out.println("You can attack, check balance, upgrade, create boss, summon boss"
+                        +
                         "or prestige(requires 100 coins)");
                 String command = nextLine.nextLine();
                 nextMove(command);
