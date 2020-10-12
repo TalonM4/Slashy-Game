@@ -1,6 +1,5 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -10,10 +9,14 @@ public class AllBosses {
     public AllBosses() {
     }
 
+    //REQUIRES: a valid boss
+    //MODIFIES: this
+    //EFFECTS: adds the given boss to the list
     public void addBoss(Boss bossToAdd) {
         allBosses.add(bossToAdd);
     }
 
+    //EFFECTS: returns the size of the list
     public int listSize() {
         return allBosses.size();
     }

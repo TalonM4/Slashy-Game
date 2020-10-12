@@ -67,15 +67,12 @@ public class GameBackend {
         balance += stage;
         if (level + 1 == 10) {
             increaseStageByOne();
-            setLevelToZero();
+            level = 0;
         } else {
             level += 1;
         }
     }
 
-    public void setLevelToZero() {
-        level = 0;
-    }
 
     //REQUIRES: Name to have an associated boss
     //MODIFIES: this
@@ -84,7 +81,5 @@ public class GameBackend {
         Boss currentBoss = listOfBosses.stringToBoss(name);
         currentEnemyHealth = currentBoss.health;
     }
-
-
 
 }
