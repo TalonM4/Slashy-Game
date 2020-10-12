@@ -1,7 +1,5 @@
 package model;
 
-import java.util.List;
-
 public class GameBackend {
 
     public  int upgradeCost;
@@ -31,7 +29,7 @@ public class GameBackend {
         this.balance -= 100;
         stage = 1;
         weaponLevel = 1;
-        balance = 1;
+        balance = 0;
         level = 1;
         currentEnemyHealth = 3;
         upgradeCost = 1;
@@ -39,12 +37,12 @@ public class GameBackend {
 
     }
 
-    private boolean isNotZero() {
+    public boolean isPrestigeNotZero() {
         return this.prestigeLevel != 0;
     }
 
     public double attackDamageCalculator() {
-        if (isNotZero()) {
+        if (isPrestigeNotZero()) {
             return 3 * weaponLevel * Math.pow(1.05,prestigeLevel);
         } else {
             return 3 * weaponLevel;
