@@ -37,16 +37,9 @@ public class GameBackend {
 
     }
 
-    public boolean isPrestigeNotZero() {
-        return this.prestigeLevel != 0;
-    }
 
     public double attackDamageCalculator() {
-        if (isPrestigeNotZero()) {
-            return 3 * weaponLevel * Math.pow(1.05,prestigeLevel);
-        } else {
-            return 3 * weaponLevel;
-        }
+        return 3 * weaponLevel * (Math.pow(1.05, prestigeLevel));
     }
 
     public int getBalance() {
@@ -75,7 +68,6 @@ public class GameBackend {
         if (level + 1 == 10) {
             increaseStageByOne();
             setLevelToZero();
-
         } else {
             level += 1;
         }

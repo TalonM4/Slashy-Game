@@ -34,13 +34,6 @@ public class GameBackendTest {
         assertEquals(0, toTest.listOfBosses.listSize());
     }
 
-    @Test
-    public void isPrestigeNotZeroTest() {
-        GameBackend toTest = new GameBackend();
-        assertFalse(toTest.isPrestigeNotZero());
-        toTest.onPrestige();
-        assertTrue(toTest.isPrestigeNotZero());
-    }
 
     @Test
     public void attackDamageCalculatorTest() {
@@ -56,5 +49,21 @@ public class GameBackendTest {
         assertEquals(0, toTest.getBalance());
         toTest.balance += 100;
         assertEquals(100,toTest.getBalance());
+    }
+
+    @Test
+    public void increaseStageByOneTest() {
+        GameBackend toTest = new GameBackend();
+        assertEquals(1, toTest.stage);
+        toTest.increaseStageByOne();
+        assertEquals(2, toTest.stage);
+    }
+
+    @Test
+    public void onAttackTest() {
+        GameBackend toTest = new GameBackend();
+        assertTrue(toTest.onAttack());
+        assertTrue(toTest.onAttack());
+        assertEquals(4,Math.round(toTest.currentEnemyHealth));
     }
 }
