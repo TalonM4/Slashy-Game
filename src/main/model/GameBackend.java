@@ -34,7 +34,6 @@ public class GameBackend {
         currentEnemyHealth = 3;
         upgradeCost = 1;
         maxEnemyHealth = 3;
-
     }
 
 
@@ -46,9 +45,6 @@ public class GameBackend {
         return this.balance;
     }
 
-    public void increaseStageByOne() {
-        this.stage += 1;
-    }
 
     public boolean onAttack() {
         if (Math.round(currentEnemyHealth - attackDamageCalculator()) <= 0) {
@@ -66,7 +62,7 @@ public class GameBackend {
         currentEnemyHealth = maxEnemyHealth;
         balance += stage;
         if (level + 1 == 10) {
-            increaseStageByOne();
+            stage += 1;
             level = 0;
         } else {
             level += 1;
