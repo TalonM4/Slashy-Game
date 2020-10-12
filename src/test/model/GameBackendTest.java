@@ -51,6 +51,13 @@ public class GameBackendTest {
         assertEquals(100,toTest.getBalance());
     }
 
+    @Test
+    public void increaseStageByOneTest() {
+        GameBackend toTest = new GameBackend();
+        assertEquals(1, toTest.stage);
+        toTest.increaseStageByOne();
+        assertEquals(2, toTest.stage);
+    }
 
     @Test
     public void onAttackTest() {
