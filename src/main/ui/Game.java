@@ -83,7 +83,7 @@ public class Game {
     }
 
     public void prestige() {
-        if (toPlay.getBalance() >=0 ) {
+        if (toPlay.getBalance() >= 0) {
             toPlay.onPrestige();
             System.out.println("You have sucessfully prestiged.");
         } else {

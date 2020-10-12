@@ -19,4 +19,9 @@ public class GameBackendTest {
         assertEquals(3, toTest.maxEnemyHealth);
         assertEquals(0, toTest.listOfBosses.listSize());
     }
+
+    @Test
+    public void onPrestigeTest() {
+        GameBackend toTest = new GameBackend();
+    }
 }
