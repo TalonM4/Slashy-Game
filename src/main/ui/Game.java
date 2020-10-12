@@ -1,10 +1,14 @@
 package ui;
 
+import model.AllBosses;
+import model.Boss;
 import model.GameBackend;
 import java.util.Scanner;
 
 public class Game {
     GameBackend toPlay = new GameBackend();
+    boolean createBossMode = false;
+    AllBosses allBosses = new AllBosses();
 
     public Game() {
         onGameStart();
@@ -13,15 +17,26 @@ public class Game {
 
     public void onGameStart() {
         while (true) {
-            Scanner nextLine = new Scanner(System.in);
-            System.out.println("You can attack, check balance, upgrade, or prestige(requires 100 coins)");
-            String command = nextLine.nextLine();
-            nextMove(command);
+            if (!createBossMode) {
+                Scanner nextLine = new Scanner(System.in);
+                System.out.println("You can attack, check balance, upgrade, or prestige(requires 100 coins)");
+                String command = nextLine.nextLine();
+                nextMove(command);
+            } else {
+                Scanner bossCreator = new Scanner(System.in);
+                System.out.println("What is the name of the boss you want to create?");
+                String name = bossCreator.nextLine();
+                System.out.println("What is the amount of health you want the boss to have?");
+                int health = bossCreator.nextByte();
+                Boss toAdd = new Boss(name, health);
+                allBosses.addBoss(toAdd);
+                createBossMode = false;
+            }
         }
     }
 
     public void nextMove(String command) {
-        if (command.equalsIgnoreCase("Attack")) {
+        if (command.equalsIgnoreCase("Attack") || command.equalsIgnoreCase("A")) {
             onAttack();
         } else if (command.equalsIgnoreCase("Check Balance")) {
             displayBalance();
@@ -29,13 +44,20 @@ public class Game {
             upgrade();
         } else if (command.equalsIgnoreCase("Prestige")) {
             toPlay.onPrestige();
+        } else if (command.equalsIgnoreCase("Create Boss")) {
+            createBossMode = true;
+        } else if (command.equalsIgnoreCase("Summon Boss")) {
+            Scanner bossName = new Scanner(System.in);
+            String name = bossName.nextLine();
+            toPlay.summonBoss(name);
+            System.out.println("You have summoned " + name);
         } else {
             System.out.println("You selected an invalid command");
         }
     }
 
     public void displayBalance() {
-        System.out.println("You have " + toPlay.getBalance() + " dollars.");;
+        System.out.println("You have " + toPlay.getBalance() + " dollars.");
     }
 
     public void onAttack() {
@@ -54,13 +76,12 @@ public class Game {
             toPlay.upgradeCost += 2;
             System.out.println("You have successfully upgraded your weapon.");
             System.out.println("Your balance is now " + toPlay.balance + ".");
-        }
-
-        else {
+        } else {
             System.out.println("You don't have enough money to upgrade.");
-
         }
     }
+
+
 
 }
 
