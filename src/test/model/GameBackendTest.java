@@ -1,6 +1,8 @@
 package model;
 
 import org.junit.jupiter.api.Test;
+import ui.Game;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GameBackendTest {
@@ -67,5 +69,23 @@ public class GameBackendTest {
         assertEquals(4,Math.round(toTest.currentEnemyHealth));
     }
 
+    @Test
+    public void onKillTest() {
+        GameBackend toTest = new GameBackend();
+        toTest.onKill();
+        assertEquals(3, Math.round(toTest.maxEnemyHealth));
+        assertEquals(3, Math.round(toTest.currentEnemyHealth));
+        assertEquals(1, toTest.balance);
+        toTest.level = 9;
+        toTest.onKill();
+        assertEquals(0, toTest.level);
+        assertEquals(2, toTest.stage);
+    }
+
+    @Test
+    public void summonBossTest() {
+        GameBackend toTest = new GameBackend();
+
+    }
 
 }

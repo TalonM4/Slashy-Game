@@ -1,6 +1,5 @@
 package ui;
 
-import model.AllBosses;
 import model.Boss;
 import model.GameBackend;
 import java.util.Scanner;
@@ -8,7 +7,7 @@ import java.util.Scanner;
 public class Game {
     GameBackend toPlay = new GameBackend();
     boolean createBossMode = false;
-    AllBosses allBosses = new AllBosses();
+
 
     public Game() {
         onGameStart();
@@ -29,7 +28,7 @@ public class Game {
                 System.out.println("What is the amount of health you want the boss to have?");
                 int health = bossCreator.nextByte();
                 Boss toAdd = new Boss(name, health);
-                allBosses.addBoss(toAdd);
+                toPlay.listOfBosses.addBoss(toAdd);
                 createBossMode = false;
             }
         }
