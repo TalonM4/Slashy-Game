@@ -86,7 +86,7 @@ public class GameBackend {
     public void summonBoss(String name) {
         Boss currentBoss = listOfBosses.stringToBoss(name);
         currentEnemyHealth = currentBoss.health;
-        }
+    }
 
 
     public void onBossKill() {
