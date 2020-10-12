@@ -24,4 +24,12 @@ class BossTest {
         assertEquals(2, bossList.listSize());
     }
 
+    @Test
+    public void stringToBossTest() {
+        AllBosses bossList = new AllBosses();
+        Boss boss1 = new Boss("Boss1", 1);
+        bossList.addBoss(boss1);
+        assertEquals(boss1, bossList.stringToBoss("Boss1"));
+    }
+
 }
