@@ -13,7 +13,8 @@ public class Game {
         onGameStart();
     }
 
-
+    //MODIFIES: this
+    //EFFECTS:
     public void onGameStart() {
         while (true) {
             if (!createBossMode) {
@@ -36,6 +37,8 @@ public class Game {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: takes the user input and calls the relevant method
     public void nextMove(String command) {
         if (command.equalsIgnoreCase("Attack") || command.equalsIgnoreCase("A")) {
             onAttack();
@@ -57,10 +60,14 @@ public class Game {
         }
     }
 
+    //EFFECTS: displays the user's balance in a nice way!
     public void displayBalance() {
         System.out.println("You have " + toPlay.getBalance() + " dollars.");
     }
 
+    //MODIFIES: toPlay
+    //EFFECTS: calls toPlay.onAttack to determine if the enemy has died. If it has died, print the kill and level
+    //         progression message. If not display how much health is remaining.
     public void onAttack() {
         if (toPlay.onAttack()) {
             System.out.println("You have killed the enemy.");
@@ -69,7 +76,8 @@ public class Game {
             System.out.println("The enemy has " + toPlay.currentEnemyHealth + " health remaining.");
         }
     }
-
+    //MODIFIES: toPlay
+    //EFFECTS: If there is enough money to upgrade, upgrades the weapon. If not tell the user they are poor
     public void upgrade() {
         if (toPlay.getBalance() >= toPlay.upgradeCost) {
             toPlay.balance -= toPlay.upgradeCost;
@@ -82,8 +90,9 @@ public class Game {
         }
     }
 
+    //EFFECTS: if the user has enough money to prestige, they will prestige, else tell them they are poor :(
     public void prestige() {
-        if (toPlay.getBalance() >= 0) {
+        if (toPlay.getBalance() >= 100) {
             toPlay.onPrestige();
             System.out.println("You have sucessfully prestiged.");
         } else {
