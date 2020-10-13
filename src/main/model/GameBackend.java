@@ -71,6 +71,7 @@ public class GameBackend {
             return false;
         }
     }
+
     //MODIFIES: this
     //EFFECTS: creates the next enemy, by taking the current max health and multiplying it by 1.15 and the stage
     //         and set current health to that number. Increases the level by one. Increases balance by the stage
