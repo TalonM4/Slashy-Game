@@ -3,6 +3,7 @@ package model;
 import java.util.LinkedList;
 import java.util.List;
 
+//Represents a list of bosses.
 public class AllBosses {
     List<Boss> allBosses = new LinkedList<>();
 
