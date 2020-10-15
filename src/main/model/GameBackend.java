@@ -14,7 +14,10 @@ public class GameBackend {
     public double maxEnemyHealth;
     public AllBosses listOfBosses;
 
-    /*EFFECTS: Prestige
+    /*EFFECTS: Prestige is intialized as 0, weapon level is intialized as 1, balance is initialized at 0,
+    stage is intialized at 1, level is initialized as 1, current enemy health is intialized as 3, upgrade cost is
+    intialized as1, max enemy health is intialized as 3, and list of bosses is a empty Allbosses class.
+
     */
     public GameBackend() {
         this.prestigeLevel = 0;
