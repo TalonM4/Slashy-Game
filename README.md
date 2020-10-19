@@ -27,3 +27,5 @@ and kill their bosses.
 - As a user I want to be able to create and attack my own bosses
 - As a user I want to be able to prestige in order beat enemies faster
 - As a user I want to be able to check how much money I have
+- As a user I want to be able to save my game
+- As a user I want to be able to resume my game from my last save
