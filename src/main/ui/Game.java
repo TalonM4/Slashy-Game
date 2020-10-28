@@ -1,14 +1,22 @@
 package ui;
 
+import Persistence.Loader;
+import Persistence.Save;
 import model.Boss;
 import model.GameBackend;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 //Represents the UI of the game, contains the backend.
 public class Game {
+    private static final String DATA_STORAGE = "./data/data.txt";
     GameBackend toPlay = new GameBackend();
     boolean createBossMode = false;
     boolean firstTime = true;
+    private Save save = new Save(DATA_STORAGE);
+    private Loader loader = new Loader("./data/data.txt");
 
     //EFFECTS: starts the whole thing
     public Game() {
@@ -68,6 +76,10 @@ public class Game {
             onBossSummon();
         } else if (command.equalsIgnoreCase("help")) {
             onHelp();
+        } else if (command.equalsIgnoreCase("save")) {
+            onSave();
+        } else if (command.equalsIgnoreCase("load")) {
+            onLoad();
         } else {
             System.out.println("You selected an invalid command");
         }
@@ -138,6 +150,24 @@ public class Game {
                            "\nA note, creating a boss with 0 health, or summoning a boss with no associated name breaks"
                         +
                            " the game. Please don't do it.");
+    }
+
+    public void onSave() {
+        try {
+            save.openFile();
+            save.write(toPlay);
+            save.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("We can't a file with that name.");
+        }
+    }
+
+    public void onLoad() {
+        try {
+            loader.read(toPlay);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

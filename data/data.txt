@@ -1,0 +1,14 @@
+{
+    "Weapon Level": 1,
+    "Current Enemy Health": 3,
+    "Stage": 1,
+    "Bosses": [{
+        "Health": 10000000,
+        "Name": "John"
+    }],
+    "Level": 1,
+    "Upgrade Cost": 1,
+    "Prestige Level": 0,
+    "Balance": 0,
+    "Max Enemy Health": 3
+}

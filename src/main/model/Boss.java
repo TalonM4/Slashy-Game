@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONObject;
+
 // Represents a boss created by the user. Has a name and health points
 public class Boss {
 
@@ -10,5 +12,12 @@ public class Boss {
     public Boss(String name, int health) {
         this.name = name;
         this.health = health;
+    }
+
+    public JSONObject bossToJson(){
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("Name", name);
+        jsonObject.put("Health", health);
+        return jsonObject;
     }
 }

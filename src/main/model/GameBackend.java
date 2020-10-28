@@ -1,5 +1,8 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 // Represents the innerworkings of the game. Consists of upgrade cost, balance, weapon level, prestige level
 // prestige level, stage, level, current enemy health, max enemy health, and list of Bosses
 public class GameBackend {
@@ -98,5 +101,30 @@ public class GameBackend {
         Boss currentBoss = listOfBosses.stringToBoss(name);
         currentEnemyHealth = currentBoss.health;
     }
+
+    public JSONObject convertToJson() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("Upgrade Cost", upgradeCost);
+        jsonObject.put("Balance", balance);
+        jsonObject.put("Weapon Level", weaponLevel);
+        jsonObject.put("Prestige Level", prestigeLevel);
+        jsonObject.put("Stage", stage);
+        jsonObject.put("Level", level);
+        jsonObject.put("Current Enemy Health", currentEnemyHealth);
+        jsonObject.put("Max Enemy Health", maxEnemyHealth);
+        jsonObject.put("Bosses", bossesToJson());
+
+        return jsonObject;
+    }
+
+    public JSONArray bossesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Boss b : listOfBosses.allBosses) {
+            jsonArray.put(b.bossToJson());
+        }
+        return jsonArray;
+    }
+
 
 }
