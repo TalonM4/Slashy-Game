@@ -14,7 +14,7 @@ public class Boss {
         this.health = health;
     }
 
-    public JSONObject bossToJson(){
+    public JSONObject bossToJson() {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("Name", name);
         jsonObject.put("Health", health);

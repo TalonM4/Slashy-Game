@@ -1,4 +1,4 @@
-package Persistence;
+package persistence;
 
 import model.Boss;
 import model.GameBackend;
@@ -21,7 +21,7 @@ public class Loader {
 
     public void read(GameBackend gb) throws IOException {
         String jsonData = readFile(fileName);
-        JSONObject jsonObject =new JSONObject(jsonData);
+        JSONObject jsonObject = new JSONObject(jsonData);
         loadWeaponLevel(gb, jsonObject);
         loadCurrentEnemyHealth(gb, jsonObject);
         loadStage(gb, jsonObject);
@@ -39,7 +39,7 @@ public class Loader {
     private String readFile(String source) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
 
-        try (Stream<String> stream = Files.lines( Paths.get(source), StandardCharsets.UTF_8)) {
+        try (Stream<String> stream = Files.lines(Paths.get(source), StandardCharsets.UTF_8)) {
             stream.forEach(s -> contentBuilder.append(s));
         }
 
@@ -49,7 +49,7 @@ public class Loader {
     //MODIFIES: gb
     //EFFECTS: changes the weapon level to the loaded value
     private void loadWeaponLevel(GameBackend gb, JSONObject jsonObject) {
-        int loadWeaponLevel =jsonObject.getInt("Weapon Level");
+        int loadWeaponLevel = jsonObject.getInt("Weapon Level");
         gb.weaponLevel = loadWeaponLevel;
     }
 

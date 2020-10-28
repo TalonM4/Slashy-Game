@@ -1,4 +1,4 @@
-package Persistence;
+package persistence;
 
 import model.GameBackend;
 import org.json.JSONObject;

@@ -1,7 +1,7 @@
 package ui;
 
-import Persistence.Loader;
-import Persistence.Save;
+import persistence.Loader;
+import persistence.Save;
 import model.Boss;
 import model.GameBackend;
 
@@ -36,7 +36,7 @@ public class Game {
                 Scanner nextLine = new Scanner(System.in);
                 System.out.println("You can attack, check balance, upgrade, create boss, summon boss, ask for help,"
                         +
-                        " or prestige(requires 100 coins)");
+                        " save game, load game, or prestige(requires 100 coins)");
                 String command = nextLine.nextLine();
                 nextMove(command);
             } else {
@@ -147,7 +147,9 @@ public class Game {
                         +
                            "using the 'create boss' keyword. You can fight the boss using the 'summon boss keyword. "
                         +
-                           "\nA note, creating a boss with 0 health, or summoning a boss with no associated name breaks"
+                           "\n You can save and load a game using the 'save' and 'load' keywords. "
+                        +
+                            "A note, creating a boss with 0 health, or summoning a boss with no associated name breaks"
                         +
                            " the game. Please don't do it.");
     }
