@@ -12,11 +12,12 @@ public class Save {
 
     public Save(String fileName) {
         this.fileName = fileName;
-}
+    }
 
     public void openFile() throws FileNotFoundException {
-    fileOpener =new PrintWriter(new File(fileName));
-}
+        fileOpener = new PrintWriter(new File(fileName));
+    }
+
     public void write(GameBackend gb) {
         JSONObject json = gb.convertToJson();
         printToFile(json.toString(4));
