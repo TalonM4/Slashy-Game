@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 //Represents the UI of the game, contains the backend.
 public class Game {
-    private static final String DATA_STORAGE = "./data/data.txt";
+        private static final String DATA_STORAGE = "./data/data.txt";
     GameBackend toPlay = new GameBackend();
     boolean createBossMode = false;
     boolean firstTime = true;
