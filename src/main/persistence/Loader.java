@@ -11,14 +11,18 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
+// this class' read and readfile are based on code from https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 public class Loader {
 
     private String fileName;
 
+    //EFFECTS: creates a Loader
     public Loader(String fileName) {
         this.fileName = fileName;
     }
 
+    //MODIFIES: gb
+    //EFFECTS: reads the save file and adjusts the game accordingly
     public void read(GameBackend gb) throws IOException {
         String jsonData = readFile(fileName);
         JSONObject jsonObject = new JSONObject(jsonData);
@@ -102,6 +106,7 @@ public class Loader {
         gb.maxEnemyHealth = loadMaxEnemyHealth;
     }
 
+    //EFFECTS: iterates through the list of bosses saved, and adds them into the game
     private void loadBosses(GameBackend gb, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("Bosses");
         for (Object json : jsonArray) {
@@ -110,6 +115,8 @@ public class Loader {
         }
     }
 
+    //MODIFIES: gb
+    //EFFECTS: add the bosses from file into the game backend
     private void addBoss(GameBackend gb, JSONObject nextThingy) {
         int health = nextThingy.getInt("Health");
         String name = nextThingy.getString("Name");

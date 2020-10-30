@@ -3,7 +3,6 @@ package persistence;
 import model.Boss;
 import model.GameBackend;
 import org.junit.jupiter.api.Test;
-import ui.Game;
 
 import java.io.FileNotFoundException;
 import static org.junit.jupiter.api.Assertions.fail;
