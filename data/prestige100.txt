@@ -1,0 +1,11 @@
+{
+    "Weapon Level": 1,
+    "Current Enemy Health": 3,
+    "Stage": 1,
+    "Bosses": [],
+    "Level": 1,
+    "Upgrade Cost": 1,
+    "Prestige Level": 100,
+    "Balance": 0,
+    "Max Enemy Health": 3
+}

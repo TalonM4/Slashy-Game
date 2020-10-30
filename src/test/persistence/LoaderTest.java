@@ -2,6 +2,7 @@ package persistence;
 
 import model.GameBackend;
 import org.junit.jupiter.api.Test;
+import ui.Game;
 
 import java.io.IOException;
 
@@ -30,6 +31,28 @@ public class LoaderTest {
         } catch (IOException e) {
             fail("./data/newgamesave.txt is a valid file name.");
         }
+    }
 
+    @Test
+    public void prestige100Test() {
+        GameBackend gb = new GameBackend();
+        Loader loader = new Loader("./data/prestige100.txt");
+        try {
+            loader.read(gb);
+            assertEquals(100, gb.prestigeLevel);
+        } catch (IOException e) {
+            fail("./data/prestige100.txt is a valid file name.");
+        }
+    }
+
+    @Test
+    public void loadBossTest() {
+        GameBackend gb = new GameBackend();
+        Loader loader = new Loader("./data/bosssave.txt");
+        try {
+            loader.read(gb);
+        } catch (IOException e) {
+            fail("bosssave.txt is a valid file name");
+        }
     }
 }
