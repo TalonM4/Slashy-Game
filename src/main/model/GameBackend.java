@@ -102,6 +102,7 @@ public class GameBackend {
         currentEnemyHealth = currentBoss.health;
     }
 
+    //EFFECT: convert game backend into a jsonobject
     public JSONObject convertToJson() {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("Upgrade Cost", upgradeCost);
@@ -117,6 +118,7 @@ public class GameBackend {
         return jsonObject;
     }
 
+    //EFFECTS: converts the lists of bosses into a json array
     public JSONArray bossesToJson() {
         JSONArray jsonArray = new JSONArray();
 

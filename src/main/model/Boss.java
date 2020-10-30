@@ -14,6 +14,7 @@ public class Boss {
         this.health = health;
     }
 
+    //EFFECTS: turns the boss into a jsonobject
     public JSONObject bossToJson() {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("Name", name);
