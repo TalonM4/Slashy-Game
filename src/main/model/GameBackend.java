@@ -10,7 +10,7 @@ public class GameBackend {
     public  int upgradeCost;
     public int balance;
     public int weaponLevel;
-    public double prestigeLevel;
+    public int prestigeLevel;
     public int stage;
     public int level;
     public double currentEnemyHealth;
