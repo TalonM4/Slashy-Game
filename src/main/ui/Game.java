@@ -142,7 +142,7 @@
 //                        +
 //                           "However you're probably wondering how to play this fine game. "
 //                        +
-//                           "\nYou can attack using the keyword 'attack' or 'a'. You can upgrade your weapon using the "
+//                          "\nYou can attack using the keyword 'attack' or 'a'. You can upgrade your weapon using the "
 //                        +
 //                           "keyword 'upgrade'. You can prestige using the keyword 'prestige'.\nYou can create a boss "
 //                        +
@@ -150,7 +150,7 @@
 //                        +
 //                           "\n You can save and load a game using the 'save' and 'load' keywords. "
 //                        +
-//                            "A note, creating a boss with 0 health, or summoning a boss with no associated name breaks"
+//                           "A note, creating a boss with 0 health, or summoning a boss with no associated name breaks"
 //                        +
 //                           " the game. Please don't do it.");
 //    }
