@@ -1,8 +1,8 @@
 package persistence;
 
+import exceptions.NegativeHealthException;
 import model.GameBackend;
 import org.junit.jupiter.api.Test;
-import ui.Game;
 
 import java.io.IOException;
 
@@ -30,6 +30,8 @@ public class LoaderTest {
             assertEquals(1, gb.level);
         } catch (IOException e) {
             fail("./data/newgamesave.txt is a valid file name.");
+        } catch (NegativeHealthException e) {
+            fail("Should not have invalid boss file");
         }
     }
 
@@ -42,6 +44,8 @@ public class LoaderTest {
             assertEquals(100, gb.prestigeLevel);
         } catch (IOException e) {
             fail("./data/prestige100.txt is a valid file name.");
+        } catch (NegativeHealthException e) {
+            fail("Should not have invalid boss file");
         }
     }
 
@@ -53,6 +57,8 @@ public class LoaderTest {
             loader.read(gb);
         } catch (IOException e) {
             fail("bosssave.txt is a valid file name");
+        } catch (NegativeHealthException e) {
+            fail("Should not have invalid boss file");
         }
     }
 }

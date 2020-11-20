@@ -1,7 +1,7 @@
 package model;
 
+import exceptions.NegativeHealthException;
 import org.junit.jupiter.api.Test;
-import ui.Game;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -86,11 +86,14 @@ public class GameBackendTest {
 
     @Test
     public void summonBossTest() {
-        GameBackend toTest = new GameBackend();
+        try {GameBackend toTest = new GameBackend();
         Boss boss = new Boss("Boss", 100);
         toTest.listOfBosses.addBoss(boss);
         toTest.summonBoss("Boss");
         assertEquals(100, toTest.currentEnemyHealth);
+    } catch (NegativeHealthException e) {
+            fail("100 is greater than  0");
+        }
     }
 
 }

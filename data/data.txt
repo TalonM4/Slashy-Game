@@ -2,7 +2,10 @@
     "Weapon Level": 1,
     "Current Enemy Health": 3,
     "Stage": 1,
-    "Bosses": [],
+    "Bosses": [{
+        "Health": 50,
+        "Name": "Jimmy"
+    }],
     "Level": 1,
     "Upgrade Cost": 1,
     "Prestige Level": 0,

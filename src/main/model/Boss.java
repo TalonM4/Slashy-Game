@@ -1,5 +1,6 @@
 package model;
 
+import exceptions.NegativeHealthException;
 import org.json.JSONObject;
 
 // Represents a boss created by the user. Has a name and health points
@@ -9,9 +10,13 @@ public class Boss {
     public int health;
 
     // Name can be any string, health must be a non-zero int
-    public Boss(String name, int health) {
+    public Boss(String name, int health) throws NegativeHealthException {
         this.name = name;
-        this.health = health;
+        if (health <= 0) {
+            throw new NegativeHealthException();
+        } else {
+            this.health = health;
+        }
     }
 
     //EFFECTS: turns the boss into a jsonobject

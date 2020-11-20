@@ -1,5 +1,6 @@
 package model;
 
+import exceptions.NegativeHealthException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -38,21 +39,19 @@ public class GameBackend {
     //EFFECTS: essentially resets the backend, except adding a prestigeLevel
     public void onPrestige() {
         this.prestigeLevel += 1;
-        this.balance -= 100;
         stage = 1;
         weaponLevel = 1;
-        balance = 0;
         level = 1;
         currentEnemyHealth = 3;
         upgradeCost = 1;
         maxEnemyHealth = 3;
-
+        balance = 0;
     }
 
     //MODIFIES: this
     //EFFECTS: returns the amount of damage calculated by the formula 3 x weapon level x (1.05^prestige level)
     public double attackDamageCalculator() {
-        return 3 * weaponLevel * (Math.pow(1.05, prestigeLevel));
+        return 4.5 * weaponLevel * (Math.pow(1.12, prestigeLevel));
     }
 
 
@@ -82,9 +81,9 @@ public class GameBackend {
     //EFFECTS: creates the next enemy, by taking the current max health and multiplying it by 1.15 and the stage
     //         and set current health to that number. Increases the level by one. Increases balance by the stage
     public void onKill() {
-        maxEnemyHealth *= 1.15 * stage;
+        maxEnemyHealth *= 1.01 *  (stage /2 + 0.6);
         currentEnemyHealth = maxEnemyHealth;
-        balance += stage;
+        balance += stage + 1;
         if (level + 1 == 10) {
             increaseStageByOne();
             level = 0;
@@ -97,7 +96,7 @@ public class GameBackend {
     //REQUIRES: Name to have an associated boss
     //MODIFIES: this
     //EFFECTS:
-    public void summonBoss(String name) {
+    public void summonBoss(String name) throws NegativeHealthException {
         Boss currentBoss = listOfBosses.stringToBoss(name);
         currentEnemyHealth = currentBoss.health;
     }

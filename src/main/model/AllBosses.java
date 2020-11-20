@@ -1,5 +1,7 @@
 package model;
 
+import exceptions.NegativeHealthException;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -24,7 +26,7 @@ public class AllBosses {
 
     //REQUIRES:The name must have an associated boss
     //EFFECTS: Takes a boss name and finds it in the list
-    public Boss stringToBoss(String name) {
+    public Boss stringToBoss(String name) throws NegativeHealthException {
         Boss toReturn = new Boss("Placeholder",1);
         for (Boss boss: allBosses) {
             if (boss.name.equals(name)) {

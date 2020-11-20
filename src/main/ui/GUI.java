@@ -1,10 +1,14 @@
 package ui;
 
+import exceptions.NegativeHealthException;
+import model.Boss;
 import model.GameBackend;
 import persistence.Loader;
 import persistence.Save;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -26,6 +30,10 @@ public class GUI {
     private final JTextField levelDisplay;
     private final JTextField prestigeDisplay;
     private final JButton nextBossButton;
+    private final JButton newBossButton;
+    private final JButton fightBossButton;
+    private final JTextField healthDisplay;
+    private final JButton saveBossButton;
     GameBackend toPlay;
     private final Save save = new Save("./data/data.txt");
     private final Loader loader = new Loader("./data/data.txt");
@@ -36,7 +44,7 @@ public class GUI {
         frame = new JFrame();
 
         this.response = new JTextField();
-        response.setBounds(120, 50, 250, 20);
+        response.setBounds(70, 50, 250, 20);
 
 
         this.attackButton = new JButton("Attack");
@@ -45,34 +53,21 @@ public class GUI {
         this.saveButton = new JButton("Save");
         this.loadButton = new JButton("Load");
         this.nextBossButton = new JButton("Next Boss");
+        this.newBossButton = new JButton("New Boss");
+        this.fightBossButton = new JButton("Fight Boss");
+        this.saveBossButton = new JButton("Save Boss");
         this.balanceDisplay = new JTextField();
         this.weaponDisplay = new JTextField();
         this.levelDisplay = new JTextField();
         this.prestigeDisplay = new JTextField();
+        this.healthDisplay = new JTextField();
 
 
-        editAttackButton();
-        editUpgradeButton();
-        editSaveButton();
-        editLoadButton();
-        editPrestigeButton();
-        editNextBossButton();
         updateTextBoxes();
         initializeFrame();
     }
 
-    public void editAttackButton() {
-        attackButton.setBounds(130, 100, 100, 40);
-        attackButton.addActionListener(e -> {
-            if (toPlay.onAttack()) {
-                response.setText("You killed the enemy. You are now on " + toPlay.stage + " - " + toPlay.level);
-            } else {
-                response.setText("The enemy has " + toPlay.currentEnemyHealth + " health remaining.");
-            }
-            updateTextBoxes();
 
-        });
-    }
 
     public void initializeFrame() {
         frame.add(attackButton);
@@ -86,15 +81,44 @@ public class GUI {
         frame.add(levelDisplay);
         frame.add(prestigeDisplay);
         frame.add(nextBossButton);
-        frame.setSize(500, 500);//400 width and 500 height
+        frame.add(newBossButton);
+        frame.add(fightBossButton);
+        frame.add(healthDisplay);
+        frame.add(saveBossButton);
+
+
+        editAttackButton();
+        editUpgradeButton();
+        editSaveButton();
+        editLoadButton();
+        editPrestigeButton();
+        editNextBossButton();
+        editFightBossButton();
+        editNewBossButton();
+        editSaveBossButton();
+
+
+        frame.setSize(418, 400);
         frame.setLayout(null);
         frame.setVisible(true);
     }
 
+    public void editAttackButton() {
+        attackButton.setBounds(0, 130, 100, 40);
+        attackButton.addActionListener(e -> {
+            if (toPlay.onAttack()) {
+                response.setText("You killed the enemy. You are now on " + toPlay.stage + " - " + toPlay.level);
+            } else {
+                response.setText("The enemy has " + toPlay.currentEnemyHealth + " health remaining.");
+            }
+            updateTextBoxes();
+        });
+    }
+
     public void editPrestigeButton() {
-        prestigeButton.setBounds(200, 300, 100, 40);
+        prestigeButton.setBounds(200, 130, 100, 40);
         prestigeButton.addActionListener(e -> {
-            if (toPlay.getBalance() >= 100) {
+            if (toPlay.getBalance() >= 75) {
                 toPlay.onPrestige();
                 response.setText("You have prestiged");
             } else {
@@ -104,10 +128,8 @@ public class GUI {
         });
     }
 
-
-
     public void editUpgradeButton() {
-        upgradeButton.setBounds(100, 140, 100, 40);
+        upgradeButton.setBounds(100, 130, 100, 40);
         upgradeButton.addActionListener(e -> {
             if (toPlay.getBalance() >= toPlay.upgradeCost) {
                 toPlay.balance -= toPlay.upgradeCost;
@@ -123,13 +145,13 @@ public class GUI {
     }
 
     public void editSaveButton() {
-        saveButton.setBounds(200, 200, 100, 40);
+        saveButton.setBounds(0, 170, 100, 40);
         saveButton.addActionListener(e -> {
             try {
                 save.openFile();
                 save.write(toPlay);
                 save.close();
-                response.setText("You have sucessfully saved your game");
+                response.setText("You have successfully saved your game");
             } catch (FileNotFoundException u) {
                 System.out.println("Game not saved");
             }
@@ -137,19 +159,32 @@ public class GUI {
     }
 
     public void editLoadButton() {
-        loadButton.setBounds(200, 240, 100, 40);
+        loadButton.setBounds(100, 170, 100, 40);
         loadButton.addActionListener(e -> {
             try {
                 loader.read(toPlay);
                 response.setText("Game loaded successfully");
-            } catch (IOException u) {
+            } catch (IOException | NegativeHealthException u) {
                 response.setText("Game failed to load");
             }
         });
     }
 
+    public void editNewBossButton() {
+        newBossButton.setBounds(200, 170, 100, 40);
+        newBossButton.addActionListener(e -> {
+            response.setText("What should the name of the boss be?");
+            editHealthDisplay();
+        });                                                                                
+
+    }
+
     public void editNextBossButton() {
-        nextBossButton.setBounds(300, 300, 100, 40);
+        nextBossButton.setBounds(300, 130, 100, 40);
+    }
+
+    public void editFightBossButton() {
+        fightBossButton.setBounds(300, 170, 100, 40);
     }
 
     public void updateTextBoxes() {
@@ -175,11 +210,34 @@ public class GUI {
     }
 
     public void editPrestigeDisplay() {
-        prestigeDisplay.setBounds(174, 0, 70, 20);
+        prestigeDisplay.setBounds(174, 0, 100, 20);
         prestigeDisplay.setText("Prestige: " + toPlay.prestigeLevel);
     }
 
+    public void editHealthDisplay() {
+        healthDisplay.setBounds(70, 90, 250, 20);
+        healthDisplay.setText("How much health should the boss have?");
+        healthDisplay.setVisible(true);
+    }
 
+    public void editSaveBossButton() {
+        saveBossButton.setBounds(0,210, 400, 40);
+        saveBossButton.addActionListener(e -> {
+            try {
+                int health = Integer.parseInt(healthDisplay.getText());
+                Boss bossToAdd = new Boss(response.getText(), health);
+                toPlay.listOfBosses.addBoss(bossToAdd);
+                response.setText("Boss created successfully");
+                healthDisplay.setVisible(false);
+            } catch (NegativeHealthException c) {
+                healthDisplay.setText("Health must be above 0");
+            } catch (NumberFormatException w) {
+                healthDisplay.setText("Health must be an integer");
+            }
+
+
+        });
+    }
 
     //courtesy of http://suavesnippets.blogspot.com/2011/06/add-sound-on-jbutton-click-in-java.html
     public void playSound(String soundName) {
@@ -193,6 +251,7 @@ public class GUI {
             ex.printStackTrace();
         }
     }
+
 
 
 }

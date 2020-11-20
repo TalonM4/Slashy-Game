@@ -1,5 +1,6 @@
 package persistence;
 
+import exceptions.NegativeHealthException;
 import model.Boss;
 import model.GameBackend;
 import org.json.JSONArray;
@@ -23,7 +24,7 @@ public class Loader {
 
     //MODIFIES: gb
     //EFFECTS: reads the save file and adjusts the game accordingly
-    public void read(GameBackend gb) throws IOException {
+    public void read(GameBackend gb) throws IOException, NegativeHealthException {
         String jsonData = readFile(fileName);
         JSONObject jsonObject = new JSONObject(jsonData);
         loadWeaponLevel(gb, jsonObject);
@@ -88,7 +89,7 @@ public class Loader {
     //MODIFIES: gb
     //EFFECTS: changes the prestige level to the loaded value
     private void loadPrestigeLevel(GameBackend gb, JSONObject jsonObject) {
-        int loadPrestigeLevel = jsonObject.getInt("Upgrade Cost");
+        int loadPrestigeLevel = jsonObject.getInt("Prestige Level");
         gb.prestigeLevel = loadPrestigeLevel;
     }
 
@@ -107,7 +108,7 @@ public class Loader {
     }
 
     //EFFECTS: iterates through the list of bosses saved, and adds them into the game
-    private void loadBosses(GameBackend gb, JSONObject jsonObject) {
+    private void loadBosses(GameBackend gb, JSONObject jsonObject) throws NegativeHealthException {
         JSONArray jsonArray = jsonObject.getJSONArray("Bosses");
         for (Object json : jsonArray) {
             JSONObject nextThingy = (JSONObject) json;
@@ -117,7 +118,7 @@ public class Loader {
 
     //MODIFIES: gb
     //EFFECTS: add the bosses from file into the game backend
-    private void addBoss(GameBackend gb, JSONObject nextThingy) {
+    private void addBoss(GameBackend gb, JSONObject nextThingy) throws NegativeHealthException {
         int health = nextThingy.getInt("Health");
         String name = nextThingy.getString("Name");
         Boss bossToAdd = new Boss(name, health);

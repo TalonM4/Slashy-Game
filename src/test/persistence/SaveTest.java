@@ -1,5 +1,6 @@
 package persistence;
 
+import exceptions.NegativeHealthException;
 import model.Boss;
 import model.GameBackend;
 import org.junit.jupiter.api.Test;
@@ -35,7 +36,12 @@ public class SaveTest {
     @Test
     public void saveBossTest() {
         GameBackend gb = new GameBackend();
-        gb.listOfBosses.addBoss(new Boss("Bob", 100));
+        try{
+            gb.listOfBosses.addBoss(new Boss("Bob", 100));
+        } catch (NegativeHealthException e) {
+            fail();
+
+        }
         Save save = new Save("./data/bosssave.txt");
         try {
             save.openFile();
