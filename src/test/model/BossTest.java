@@ -47,6 +47,21 @@ class BossTest {
         }
     }
 
+    @Test
+    public void testGetBoss() {
+        try {
+            AllBosses bossList = new AllBosses();
+            Boss boss1 = new Boss("Boss1", 100);
+            bossList.addBoss(boss1);
+            Boss boss2 = new Boss("Boss2", 200);
+            bossList.addBoss(boss2);
+            assertEquals("Boss1", bossList.getBoss(0).name);
+            assertEquals("Boss2", bossList.getBoss(1).name);
+        } catch (NegativeHealthException e) {
+            fail();
+        }
+    }
+
 
 
 }

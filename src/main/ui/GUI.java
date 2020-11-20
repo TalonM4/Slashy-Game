@@ -7,8 +7,6 @@ import persistence.Loader;
 import persistence.Save;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -18,6 +16,8 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.AudioSystem;
 
+
+// represents a GUI for slashy game
 public class GUI {
     private final JButton loadButton;
     private final JButton saveButton;
@@ -38,13 +38,14 @@ public class GUI {
     private final Save save = new Save("./data/data.txt");
     private final Loader loader = new Loader("./data/data.txt");
     private final JFrame frame;
+    private int bossNumber = 0;
 
     public GUI() {
         this.toPlay = new GameBackend();
         frame = new JFrame();
 
         this.response = new JTextField();
-        response.setBounds(70, 50, 250, 20);
+        response.setBounds(69, 50, 252, 20);
 
 
         this.attackButton = new JButton("Attack");
@@ -67,8 +68,7 @@ public class GUI {
         initializeFrame();
     }
 
-
-
+    //EFFECTS: adds all the JButtons and JTextFields to the frame. Also sets size and visibility of frame
     public void initializeFrame() {
         frame.add(attackButton);
         frame.add(prestigeButton);
@@ -94,6 +94,7 @@ public class GUI {
         frame.setVisible(true);
     }
 
+
     private void editButtons() {
         editAttackButton();
         editUpgradeButton();
@@ -106,6 +107,8 @@ public class GUI {
         editSaveBossButton();
     }
 
+    //MODIFIES: response, attackButton
+    //EFFECTS: puts attack button in postions and initializes the ActionListener
     public void editAttackButton() {
         attackButton.setBounds(0, 130, 100, 40);
         attackButton.addActionListener(e -> {
@@ -178,16 +181,37 @@ public class GUI {
         newBossButton.addActionListener(e -> {
             response.setText("What should the name of the boss be?");
             editHealthDisplay();
-        });                                                                                
+        });
 
     }
 
     public void editNextBossButton() {
         nextBossButton.setBounds(300, 130, 100, 40);
+        nextBossButton.addActionListener(e -> {
+            if (toPlay.listOfBosses.listSize() == 0) {
+                response.setText("Make a boss using the 'New Boss' button first");
+            } else {
+                Boss bossToFight = toPlay.listOfBosses.getBoss(bossNumber);
+                response.setText(bossToFight.name + " " + bossToFight.health);
+                bossNumber += 1;
+                if (bossNumber == toPlay.listOfBosses.listSize()) {
+                    bossNumber = 0;
+                }
+            }
+        });
     }
 
     public void editFightBossButton() {
         fightBossButton.setBounds(300, 170, 100, 40);
+        fightBossButton.addActionListener(e -> {
+            if (toPlay.listOfBosses.listSize() == 0) {
+                response.setText("Make a boss using the 'New Boss' button first");
+            }
+            Boss bossToFight = toPlay.listOfBosses.getBoss(bossNumber - 1);
+            response.setText("Now fighting: " + bossToFight.name + " with " + bossToFight.health + " health");
+            toPlay.currentEnemyHealth = bossToFight.health;
+
+        });
     }
 
     public void updateTextBoxes() {
@@ -224,7 +248,7 @@ public class GUI {
     }
 
     public void editSaveBossButton() {
-        saveBossButton.setBounds(0,210, 400, 40);
+        saveBossButton.setBounds(0, 210, 400, 40);
         saveBossButton.addActionListener(e -> {
             try {
                 int health = Integer.parseInt(healthDisplay.getText());
@@ -232,13 +256,12 @@ public class GUI {
                 toPlay.listOfBosses.addBoss(bossToAdd);
                 response.setText("Boss created successfully");
                 healthDisplay.setVisible(false);
+                healthDisplay.setText(" ");
             } catch (NegativeHealthException c) {
                 healthDisplay.setText("Health must be above 0");
             } catch (NumberFormatException w) {
                 healthDisplay.setText("Health must be an integer");
             }
-
-
         });
     }
 
@@ -254,9 +277,4 @@ public class GUI {
             ex.printStackTrace();
         }
     }
-
-
-
 }
-
-

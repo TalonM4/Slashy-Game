@@ -24,6 +24,11 @@ public class AllBosses {
         return allBosses.size();
     }
 
+    //EFFECTS: returns the boss at element i
+    public Boss getBoss(int i) {
+        return allBosses.get(i);
+    }
+
     //REQUIRES:The name must have an associated boss
     //EFFECTS: Takes a boss name and finds it in the list
     public Boss stringToBoss(String name) throws NegativeHealthException {
