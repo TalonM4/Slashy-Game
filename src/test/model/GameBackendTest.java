@@ -40,9 +40,9 @@ public class GameBackendTest {
     @Test
     public void attackDamageCalculatorTest() {
         GameBackend toTest = new GameBackend();
-        assertEquals(3, toTest.attackDamageCalculator());
+        assertEquals(4.5, toTest.attackDamageCalculator());
         toTest.onPrestige();
-        assertEquals(3.15, toTest.attackDamageCalculator());
+        assertEquals(5.040000000000001, toTest.attackDamageCalculator());
     }
 
     @Test
@@ -66,7 +66,7 @@ public class GameBackendTest {
         GameBackend toTest = new GameBackend();
         assertTrue(toTest.onAttack());
         assertTrue(toTest.onAttack());
-        assertEquals(4,Math.round(toTest.currentEnemyHealth));
+        assertEquals(1,Math.round(toTest.currentEnemyHealth));
         toTest.currentEnemyHealth = 100;
         assertFalse(toTest.onAttack());
     }
@@ -75,9 +75,9 @@ public class GameBackendTest {
     public void onKillTest() {
         GameBackend toTest = new GameBackend();
         toTest.onKill();
-        assertEquals(3, Math.round(toTest.maxEnemyHealth));
-        assertEquals(3, Math.round(toTest.currentEnemyHealth));
-        assertEquals(1, toTest.balance);
+        assertEquals(2, Math.round(toTest.maxEnemyHealth));
+        assertEquals(2, Math.round(toTest.currentEnemyHealth));
+        assertEquals(2, toTest.balance);
         toTest.level = 9;
         toTest.onKill();
         assertEquals(0, toTest.level);
