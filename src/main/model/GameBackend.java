@@ -81,7 +81,7 @@ public class GameBackend {
     //EFFECTS: creates the next enemy, by taking the current max health and multiplying it by 1.15 and the stage
     //         and set current health to that number. Increases the level by one. Increases balance by the stage
     public void onKill() {
-        maxEnemyHealth *= 1.01 *  (stage /2 + 0.6);
+        maxEnemyHealth *= 1.01 *  (stage / 2 + 0.6);
         currentEnemyHealth = maxEnemyHealth;
         balance += stage + 1;
         if (level + 1 == 10) {

@@ -86,7 +86,15 @@ public class GUI {
         frame.add(healthDisplay);
         frame.add(saveBossButton);
 
+        editButtons();
 
+
+        frame.setSize(418, 400);
+        frame.setLayout(null);
+        frame.setVisible(true);
+    }
+
+    private void editButtons() {
         editAttackButton();
         editUpgradeButton();
         editSaveButton();
@@ -96,11 +104,6 @@ public class GUI {
         editFightBossButton();
         editNewBossButton();
         editSaveBossButton();
-
-
-        frame.setSize(418, 400);
-        frame.setLayout(null);
-        frame.setVisible(true);
     }
 
     public void editAttackButton() {
