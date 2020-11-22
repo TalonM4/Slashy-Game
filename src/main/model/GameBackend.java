@@ -1,6 +1,5 @@
 package model;
 
-import exceptions.NegativeHealthException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -93,13 +92,15 @@ public class GameBackend {
     }
 
 
-    //REQUIRES: Name to have an associated boss
-    //MODIFIES: this
-    //EFFECTS:
-    public void summonBoss(String name) throws NegativeHealthException {
-        Boss currentBoss = listOfBosses.stringToBoss(name);
-        currentEnemyHealth = currentBoss.health;
-    }
+//NOTE: Deprecated method only used in console UI
+
+//    //REQUIRES: Name to have an associated boss
+//    //MODIFIES: this
+//    //EFFECTS:
+//    public void summonBoss(String name) throws NegativeHealthException {
+//        Boss currentBoss = listOfBosses.stringToBoss(name);
+//        currentEnemyHealth = currentBoss.health;
+//    }
 
     //EFFECT: convert game backend into a jsonobject
     public JSONObject convertToJson() {
