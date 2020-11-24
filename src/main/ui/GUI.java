@@ -35,7 +35,7 @@ public class GUI {
     private final JButton fightBossButton;
     private final JTextField healthDisplay;
     private final JButton saveBossButton;
-    GameBackend toPlay;
+    private GameBackend toPlay;
     private final Save save = new Save("./data/data.txt");
     private final Loader loader = new Loader("./data/data.txt");
     private final JFrame frame;
@@ -71,7 +71,7 @@ public class GUI {
     }
 
     //EFFECTS: adds all the JButtons and JTextFields to the frame. Also sets size and visibility of frame
-    public void initializeFrame() {
+    private void initializeFrame() {
         frame.add(attackButton);
         frame.add(prestigeButton);
         frame.add(response);
@@ -113,7 +113,7 @@ public class GUI {
 
     //MODIFIES: this
     //EFFECTS: puts attack button in postions and initializes the ActionListener
-    public void editAttackButton() {
+    private void editAttackButton() {
         attackButton.setBounds(0, 130, 100, 40);
         attackButton.addActionListener(e -> {
             if (toPlay.onAttack()) {
@@ -127,7 +127,7 @@ public class GUI {
 
     //MODIFIES: this
     //EFFECTS: if the user has more than 75 dollars, prestiges, otherwise informs user that they need more money
-    public void editPrestigeButton() {
+    private void editPrestigeButton() {
         prestigeButton.setBounds(200, 130, 100, 40);
         prestigeButton.addActionListener(e -> {
             if (toPlay.getBalance() >= 75) {
@@ -143,7 +143,7 @@ public class GUI {
     //MODIFIES: this
     //EFFECTS: if the user has more money than upgradeCost, upgrades weapon, otherwise informs user that
     // they need more money
-    public void editUpgradeButton() {
+    private void editUpgradeButton() {
         upgradeButton.setBounds(100, 130, 100, 40);
         upgradeButton.addActionListener(e -> {
             if (toPlay.getBalance() >= toPlay.upgradeCost) {
@@ -161,7 +161,7 @@ public class GUI {
 
     //MODIFIES: this
     //EFFECTS: initializes the save button, on button click saves to file
-    public void editSaveButton() {
+    private void editSaveButton() {
         saveButton.setBounds(0, 170, 100, 40);
         saveButton.addActionListener(e -> {
             try {
@@ -177,7 +177,7 @@ public class GUI {
 
     //MODIFIES: this
     //EFFECTS: initializes the load button, on button click loads from save
-    public void editLoadButton() {
+    private void editLoadButton() {
         loadButton.setBounds(100, 170, 100, 40);
         loadButton.addActionListener(e -> {
             try {
@@ -191,7 +191,7 @@ public class GUI {
 
     //MODIFIES: this
     //EFFECTS: initializes the boss button
-    public void editNewBossButton() {
+    private void editNewBossButton() {
         newBossButton.setBounds(200, 170, 100, 40);
         newBossButton.addActionListener(e -> {
             response.setText("What should the name of the boss be?");
@@ -202,7 +202,7 @@ public class GUI {
 
     //MODIFIES: this
     //EFFECTS: iterates through the list of bosses, else tells the user to create a boss
-    public void editNextBossButton() {
+    private void editNextBossButton() {
         nextBossButton.setBounds(300, 130, 100, 40);
         nextBossButton.addActionListener(e -> {
             if (toPlay.listOfBosses.listSize() == 0) {
@@ -221,7 +221,7 @@ public class GUI {
     //MODIFIES: this
     //EFFECTS: sets the current max health to the current boss if there is a boss created, else tells the user
     // to create a boss
-    public void editFightBossButton() {
+    private void editFightBossButton() {
         fightBossButton.setBounds(300, 170, 100, 40);
         fightBossButton.addActionListener(e -> {
             if (toPlay.listOfBosses.listSize() == 0) {
@@ -236,7 +236,7 @@ public class GUI {
 
     //MODIFIES: this
     //EFFECTS: modifies the all the displays
-    public void updateTextBoxes() {
+    private void updateTextBoxes() {
         editWeaponDisplay();
         editBalanceDisplay();
         editLevelDisplay();
@@ -245,35 +245,35 @@ public class GUI {
 
     //MODIFIES: this
     //EFFECTS: initializes level display, and displays the current level
-    public void editLevelDisplay() {
+    private void editLevelDisplay() {
         levelDisplay.setBounds(132, 0, 40, 20);
         levelDisplay.setText(toPlay.stage + " - " + toPlay.level);
     }
 
     //MODIFIES: this
     //EFFECTS: initializes balance display, and displays the current balance
-    public void editBalanceDisplay() {
+    private void editBalanceDisplay() {
         balanceDisplay.setBounds(0, 0, 64, 20);
         balanceDisplay.setText("$ " + toPlay.balance);
     }
 
     //MODIFIES: this
     //EFFECTS: initializes weapon display, and displays the current weapon level
-    public void editWeaponDisplay() {
+    private void editWeaponDisplay() {
         weaponDisplay.setBounds(66, 0, 64, 20);
         weaponDisplay.setText("Weapon " + toPlay.weaponLevel);
     }
 
     //MODIFIES: this
     //EFFECTS: initializes prestige display, and displays the current prestige level
-    public void editPrestigeDisplay() {
+    private void editPrestigeDisplay() {
         prestigeDisplay.setBounds(174, 0, 100, 20);
         prestigeDisplay.setText("Prestige: " + toPlay.prestigeLevel);
     }
 
     //MODIFIES: this
     //EFFECTS: initializes the health display
-    public void editHealthDisplay() {
+    private void editHealthDisplay() {
         healthDisplay.setBounds(70, 90, 250, 20);
         healthDisplay.setText("How much health should the boss have?");
         healthDisplay.setVisible(true);
@@ -281,7 +281,7 @@ public class GUI {
 
     //MODIFIES: this
     //EFFECTS: creates the boss
-    public void editSaveBossButton() {
+    private void editSaveBossButton() {
         saveBossButton.setBounds(0, 210, 400, 40);
         saveBossButton.addActionListener(e -> {
             try {
@@ -301,7 +301,7 @@ public class GUI {
 
     //courtesy of http://suavesnippets.blogspot.com/2011/06/add-sound-on-jbutton-click-in-java.html
     //EFFECTS: plays the sound with the given file path
-    public void playSound(String soundName) {
+    private void playSound(String soundName) {
         try {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
             Clip clip = AudioSystem.getClip();
