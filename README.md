@@ -41,3 +41,12 @@ The class that is robust is the boss class. The method that makes the class robu
 construction of the boss, if the given health is less than 1, the constructor throws a NegativeHealthException. 
 This exception is caught in the GUI class when hitting the save boss button. If the exception is caught it prompts the
 user to use a number that is greater than 0 for the health. 
+
+## Phase 4: Task 3
+- create a new method for creating button size. Because the majority of the buttons are uniform, by creating a method 
+for each row that takes the length of the frame, and dividing by the number of wanted buttons, only one place would need
+to be changed to alter the size of the buttons. 
+- make the Boss class robust
+- create a prestigeCost field in the GameBackend class
+- change editUpgradeButton to use a try/catch instead of if/else
+

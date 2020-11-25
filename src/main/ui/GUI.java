@@ -134,7 +134,7 @@ public class GUI {
                 toPlay.onPrestige();
                 response.setText("You have prestiged");
             } else {
-                response.setText("You need " + (100 - toPlay.balance) + " gold to prestige.");
+                response.setText("You need " + (75 - toPlay.balance) + " gold to prestige.");
             }
             updateTextBoxes();
         });

@@ -1,11 +1,20 @@
 {
-    "Weapon Level": 1,
-    "Current Enemy Health": 3,
-    "Stage": 1,
-    "Bosses": [],
-    "Level": 1,
-    "Upgrade Cost": 1,
+    "Weapon Level": 2,
+    "Current Enemy Health": 9991,
+    "Stage": 2,
+    "Bosses": [
+        {
+            "Health": 10000,
+            "Name": "John"
+        },
+        {
+            "Health": 1,
+            "Name": "Jay"
+        }
+    ],
+    "Level": 3,
+    "Upgrade Cost": 3,
     "Prestige Level": 0,
-    "Balance": 0,
-    "Max Enemy Health": 3
+    "Balance": 26,
+    "Max Enemy Health": 0.1395400716148019
 }
